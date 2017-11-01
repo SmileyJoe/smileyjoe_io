@@ -24,10 +24,10 @@ from the website. All secrets, viewed or not, will be removed after 72 hours.
 
 ## Branch Naming ##
 
-`master` - What is currently released
-`develop` - Code that is ready for released
-`app_<app_name>` - Start of a new app
-`feature_<app_name>_<feature_name>` - New feature to a specific app
-`fix_<feature_name>_<short_description>` - Fix to a specific feature
-`fix_<app_name>_<short_description>` - Fix to a specific app
-`fix_<short_description>` - A general fix that effects the whole site
+- `master` - What is currently released
+- `develop` - Code that is ready for released
+- `app_<app_name>` - Start of a new app
+- `feature_<app_name>_<feature_name>` - New feature to a specific app
+- `fix_<feature_name>_<short_description>` - Fix to a specific feature
+- `fix_<app_name>_<short_description>` - Fix to a specific app
+- `fix_<short_description>` - A general fix that effects the whole site
