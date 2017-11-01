@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from main import views as views_main
+from django.conf.urls import include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views_main.index)
+    url(r'^$', views_main.index),
+    url(r'^secret/', include('secret.urls')),
 ]
 
 handler404 = views_main.custom_404
