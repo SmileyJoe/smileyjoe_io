@@ -37,7 +37,7 @@ def load_link(request):
                 secret.id = id
                 secret.save()
                 saved = True
-                secret_link = '/secret/' + id
+                secret_link = request.build_absolute_uri() + id
     else:
         secret_link = "Something went wrong"
 
