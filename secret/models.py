@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 # Create your models here.
 class Secret(models.Model):
-    hash = models.CharField(max_length=32)
+    id = models.CharField(max_length=6, unique=True, primary_key=True)
     secret = models.CharField(max_length=256)
     expires = models.DateTimeField(default=datetime.now()+timedelta(days=3))
 
