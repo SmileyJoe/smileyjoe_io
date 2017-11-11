@@ -4,6 +4,7 @@ from secret import forms
 from secret.models import Secret
 import random
 import string
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -14,6 +15,16 @@ def index(request, id=None):
         return load_secret(request, id)
     else:
         return load_form(request)
+
+
+def api(request, id=None):
+    if id is not None:
+        return api_load_secret(request, id)
+
+
+def json_success(data):
+    data.update({"meta": {"success": True}})
+    return JsonResponse(data)
 
 
 def load_form(request):
@@ -45,7 +56,7 @@ def load_link(request):
     return render(request, 'secret/secret_link.html', context=display_data)
 
 
-def load_secret(request, id):
+def api_load_secret(request, id):
     secret = get_secret(id)
 
     if secret:
@@ -54,8 +65,13 @@ def load_secret(request, id):
     else:
         secret_text = "The secret does not exist"
 
-    display_data = {'secret': secret_text}
-    return render(request, 'secret/secret_display.html', context=display_data)
+    json = {"data": {"secret": secret_text}}
+
+    return json_success(json)
+
+
+def load_secret(request, id):
+    return render(request, 'secret/secret_display.html')
 
 
 def generate_id():
