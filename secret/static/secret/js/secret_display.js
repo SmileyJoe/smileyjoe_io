@@ -2,7 +2,7 @@ $(document).ready(function(){
     var path = window.location.pathname;
     segments = trimChar(path, "/").split("/");
     id = segments[segments.length-1];
-    $.getJSON("/secret/api/" + id + "/", function(data) {
+    $.getJSON("/api/" + id + "/", function(data) {
         if(data.hasOwnProperty("meta")
             && data["meta"]["success"]){
                 $('.secret').text(data["data"]["secret"]);
