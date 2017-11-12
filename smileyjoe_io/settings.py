@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'smileyjoe_io.urls'
 ROOT_HOSTCONF = 'smileyjoe_io.hosts'
 DEFAULT_HOST = 'www'
+PARENT_HOST = 'localhost:8000'
 
 TEMPLATES = [
     {
