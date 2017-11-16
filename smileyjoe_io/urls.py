@@ -17,11 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from main import views as views_main
 from django.conf.urls import include
+from smileyjoe_io import settings
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^$', views_main.index),
     url(r'^secret/', include('secret.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [url(r'^admin/', admin.site.urls)]
 
 handler404 = views_main.custom_404

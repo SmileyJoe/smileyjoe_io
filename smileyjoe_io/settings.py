@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SMILEYJOE_IO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('SMILEYJOE_IO_DEBUG').lower() == 'TRUE'.lower()
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'secret.localhost']
 
@@ -57,7 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'smileyjoe_io.urls'
 ROOT_HOSTCONF = 'smileyjoe_io.hosts'
 DEFAULT_HOST = 'www'
-PARENT_HOST = 'localhost:8000'
+PARENT_HOST = os.environ.get('SMILEYJOE_IO_PARENT_HOST')
 
 TEMPLATES = [
     {
