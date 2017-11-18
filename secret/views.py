@@ -28,7 +28,7 @@ def json_success(data):
 
 
 def load_form(request):
-    display_data = {'form_secret': forms.Secret(), 'GA_PAGE': '"/"'}
+    display_data = {'form_secret': forms.Secret(), 'GA_PAGE': '/'}
     return render(request, 'secret/index.html', context=display_data)
 
 
@@ -52,7 +52,7 @@ def load_link(request):
     else:
         secret_link = "Something went wrong"
 
-    display_data = {'secret_link': secret_link, 'GA_PAGE': '"secret_link/"'}
+    display_data = {'secret_link': secret_link, 'GA_PAGE': 'secret_link/'}
     return render(request, 'secret/secret_link.html', context=display_data)
 
 
@@ -71,7 +71,7 @@ def api_load_secret(request, id):
 
 
 def load_secret(request):
-    display_data = {'GA_PAGE': '"secret_display/"'}
+    display_data = {'GA_PAGE': 'secret_display/'}
     return render(request, 'secret/secret_display.html', context=display_data)
 
 
