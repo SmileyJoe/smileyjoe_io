@@ -5,10 +5,16 @@ from secret.models import Secret
 import random
 import string
 from django.http import JsonResponse
+from utils.Analytics import Analytics
+from smileyjoe_io import Constant
+
+analytics = Analytics()
 
 
 # Create your views here.
 def index(request, id=None):
+    global analytics
+    analytics.set_request(request)
     if request.method == 'POST':
         return load_link(request)
     elif id is not None:
@@ -28,14 +34,16 @@ def json_success(data):
 
 
 def load_form(request):
-    display_data = {'form_secret': forms.Secret(), 'GA_PAGE': '/'}
+    display_data = {'form_secret': forms.Secret(), Constant.TEMPLATE_GA_PAGE: '/'}
     return render(request, 'secret/index.html', context=display_data)
 
 
 def load_link(request):
+    global analytics
     form = forms.Secret(request.POST)
 
     if form.is_valid():
+        analytics.secret(Analytics.ACTION_FORM_SECRET, Analytics.LABEL_VALID)
         saved = False
 
         while not saved:
@@ -49,10 +57,12 @@ def load_link(request):
                 secret.save()
                 saved = True
                 secret_link = request.build_absolute_uri() + id
+                analytics.secret(Analytics.ACTION_VIEW, Analytics.LABEL_LINK)
     else:
+        analytics.secret(Analytics.ACTION_FORM_SECRET, Analytics.LABEL_INVALID)
         secret_link = "Something went wrong"
 
-    display_data = {'secret_link': secret_link, 'GA_PAGE': 'secret_link/'}
+    display_data = {'secret_link': secret_link, Constant.TEMPLATE_GA_PAGE: 'secret_link/'}
     return render(request, 'secret/secret_link.html', context=display_data)
 
 
@@ -71,7 +81,7 @@ def api_load_secret(request, id):
 
 
 def load_secret(request):
-    display_data = {'GA_PAGE': 'secret_display/'}
+    display_data = {Constant.TEMPLATE_GA_PAGE: 'secret_display/'}
     return render(request, 'secret/secret_display.html', context=display_data)
 
 
@@ -80,7 +90,11 @@ def generate_id():
 
 
 def get_secret(id):
+    global analytics
     try:
-        return Secret.objects.get(id=id)
+        secret = Secret.objects.get(id=id)
+        analytics.secret(Analytics.ACTION_VIEW, Analytics.LABEL_SECRET)
+        return secret
     except ObjectDoesNotExist:
+        analytics.secret(Analytics.ACTION_VIEW, Analytics.LABEL_UNKNOWN)
         return None
