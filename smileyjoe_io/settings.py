@@ -58,6 +58,7 @@ ROOT_URLCONF = 'smileyjoe_io.urls'
 ROOT_HOSTCONF = 'smileyjoe_io.hosts'
 DEFAULT_HOST = 'www'
 PARENT_HOST = os.environ.get('SMILEYJOE_IO_PARENT_HOST')
+GA_TRACKING_ID = os.environ.get('SMILEYJOE_IO_GA')
 
 TEMPLATES = [
     {
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'smileyjoe_io.context_processors.analytics'
             ],
         },
     },

@@ -21,6 +21,7 @@ from the website. All secrets, viewed or not, will be removed after 72 hours.
 - `SMILEYJOE_IO_SECRET_KEY` - The Django secret key.
 - `SMILEYJOE_IO_DEBUG` - Whether to run in the debug environment or not.
 - `SMILEYJOE_IO_PARENT_HOST` - The main domain where the project will be hosted, eg, `localhost:8000`
+- `SMILEYJOE_IO_GA` - Google analytics code
 2. Install [MiniConda](https://conda.io/miniconda.html)
 3. Create the virtual environment with `conda create --name <env> --file requirements.txt`
 4. Run the project with `python manage.py runserver`

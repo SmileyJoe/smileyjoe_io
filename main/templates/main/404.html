@@ -1,6 +1,7 @@
 {% load staticfiles %}
 <html>
     <head>
+        {% autoescape off %}{{ GA_JS_CODE|safe }}{% endautoescape %}
         <title>404</title>
         <link rel="stylesheet" href="{% static 'main/css/global.css' %}">
     </head>
