@@ -1,4 +1,4 @@
-from smileyjoe_io import settings
+from smileyjoe_io import settings, constant
 import requests
 
 
@@ -12,8 +12,8 @@ class Analytics:
     KEY_ACTION = 'ea'
     KEY_LABEL = 'el'
 
-    CATEGORY_SECRET = 'secret'
-    CATEGORY_MAIN = 'main'
+    CATEGORY_SECRET = constant.SUB_SECRET
+    CATEGORY_MAIN = constant.SUB_MAIN
 
     HIT_EVENT = 'event'
 

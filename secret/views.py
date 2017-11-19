@@ -3,9 +3,9 @@ from secret import forms
 from secret.models import Secret
 import random
 import string
-from django.http import JsonResponse
 from utils.analytics import Analytics
 from utils import view
+from utils import api as api_response
 
 analytics = Analytics()
 
@@ -25,11 +25,6 @@ def index(request, id=None):
 def api(request, id=None):
     if id is not None:
         return api_load_secret(request, id)
-
-
-def json_success(data):
-    data.update({"meta": {"success": True}})
-    return JsonResponse(data)
 
 
 def load_form(request):
@@ -76,7 +71,7 @@ def api_load_secret(request, id):
 
     json = {"data": {"secret": secret_text}}
 
-    return json_success(json)
+    return api_response.json_success(json)
 
 
 def load_secret(request):
