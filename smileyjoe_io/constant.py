@@ -1,1 +1,2 @@
-TEMPLATE_GA_PAGE = 'GA_PAGE'
+SUB_SECRET = 'secret'
+SUB_MAIN = 'main'

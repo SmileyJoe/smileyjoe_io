@@ -18,6 +18,6 @@ $(window).bind( 'hashchange', function(e) {
     ga('send', 'pageview', pageName);
 });
 
-function ga_link(category, title){
-    ga('send', 'event', category, 'link', title);
+function ga_link(title){
+    ga('send', 'event', GA_CATEGORY, 'link', title);
 }

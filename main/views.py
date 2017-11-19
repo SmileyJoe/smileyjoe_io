@@ -3,8 +3,8 @@ from utils import view
 
 # Create your views here.
 def index(request):
-    return view.display(request, page='main/index.html')
+    return view.display_main(request, page='index.html')
 
 
 def custom_404(request):
-    return view.display(request, page='main/404.html')
+    return view.display_main(request, page='404.html')

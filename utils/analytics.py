@@ -13,6 +13,7 @@ class Analytics:
     KEY_LABEL = 'el'
 
     CATEGORY_SECRET = 'secret'
+    CATEGORY_MAIN = 'main'
 
     HIT_EVENT = 'event'
 
