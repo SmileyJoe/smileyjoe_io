@@ -5,8 +5,12 @@
         <script async src='https://www.google-analytics.com/analytics.js'></script>
         <script>
             window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-            ga('create', '{{ GA_TRACKING_ID }}');
+            ga('create', '{{ GA_TRACKING_ID }}', 'auto');
             ga('send', 'pageview');
+
+            function ga_link(title){
+                ga('send', 'event', 'main', 'link', title);
+            }
         </script>
         <title>SmileyJoe</title>
         <link rel="stylesheet" href="{% static 'main/css/global.css' %}">
@@ -16,12 +20,12 @@
         <div class="centered">
             <h1>smileyjoe.io</h1>
             <div class="nav">
-                <span><a href="http://blog.smileyjoe.io/about">About</a></span>
-                <span><a href="http://git.smileyjoe.io">Git</a></span>
-                <span><a href="http://maven.smileyjoe.io">Maven</a></span>
-                <span><a href="http://blog.smileyjoe.io">Blog</a></span>
+                <span><a href="http://blog.smileyjoe.io/about" onclick="ga_link('about');">About</a></span>
+                <span><a href="http://git.smileyjoe.io" onclick="ga_link('git');">Git</a></span>
+                <span><a href="http://maven.smileyjoe.io" onclick="ga_link('maven');">Maven</a></span>
+                <span><a href="http://blog.smileyjoe.io" onclick="ga_link('blog');">Blog</a></span>
                 <br/>
-                <span><a href="{% host_url 'index' host 'secret' %}">Secret</a></span>
+                <span><a href="{% host_url 'index' host 'secret' %}" onclick="ga_link('secret');">Secret</a></span>
             </div>
         </div>
     </body>
