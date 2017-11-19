@@ -6,6 +6,7 @@ import string
 from utils.analytics import Analytics
 from utils import view
 from utils import api as api_response
+from secret import constant
 
 analytics = Analytics()
 
@@ -28,7 +29,7 @@ def api(request, id=None):
 
 
 def load_form(request):
-    display_data = {'form_secret': forms.Secret()}
+    display_data = {'form_secret': forms.Secret(), 'secret_max_length': constant.SECRET_MAX_LENGTH}
     return view.display_secret(request, page='index.html', data=display_data, ga_page='/')
 
 
