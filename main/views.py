@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from utils import view
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'main/index.html')
+    return view.display(request, page='main/index.html')
 
 
 def custom_404(request):
-    return render(request, 'main/404.html')
+    return view.display(request, page='main/404.html')

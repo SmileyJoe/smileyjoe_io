@@ -1,12 +1,12 @@
-from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from secret import forms
 from secret.models import Secret
 import random
 import string
 from django.http import JsonResponse
-from utils.Analytics import Analytics
-from smileyjoe_io import Constant
+from utils.analytics import Analytics
+from utils import view
+from smileyjoe_io import constant
 
 analytics = Analytics()
 
@@ -34,8 +34,8 @@ def json_success(data):
 
 
 def load_form(request):
-    display_data = {'form_secret': forms.Secret(), Constant.TEMPLATE_GA_PAGE: '/'}
-    return render(request, 'secret/index.html', context=display_data)
+    display_data = {'form_secret': forms.Secret()}
+    return view.display(request, page='secret/index.html', data=display_data, ga_page='/')
 
 
 def load_link(request):
@@ -62,8 +62,8 @@ def load_link(request):
         analytics.secret(Analytics.ACTION_FORM_SECRET, Analytics.LABEL_INVALID)
         secret_link = "Something went wrong"
 
-    display_data = {'secret_link': secret_link, Constant.TEMPLATE_GA_PAGE: 'secret_link/'}
-    return render(request, 'secret/secret_link.html', context=display_data)
+    display_data = {'secret_link': secret_link}
+    return view.display(request, page='secret/secret_link.html', data=display_data, ga_page='secret_link/')
 
 
 def api_load_secret(request, id):
@@ -81,8 +81,7 @@ def api_load_secret(request, id):
 
 
 def load_secret(request):
-    display_data = {Constant.TEMPLATE_GA_PAGE: 'secret_display/'}
-    return render(request, 'secret/secret_display.html', context=display_data)
+    return view.display(request, page='secret/secret_display.html', ga_page='secret_display/')
 
 
 def generate_id():
