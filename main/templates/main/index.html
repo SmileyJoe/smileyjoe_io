@@ -2,16 +2,9 @@
 {% load staticfiles %}
 <html>
     <head>
-        <script async src='https://www.google-analytics.com/analytics.js'></script>
-        <script>
-            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-            ga('create', '{{ GA_TRACKING_ID }}', 'auto');
-            ga('send', 'pageview');
-
-            function ga_link(title){
-                ga('send', 'event', 'main', 'link', title);
-            }
-        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {{ analytics|safe }}
+        <script src="{% static 'main/js/analytics.js' %}"></script>
         <title>SmileyJoe</title>
         <link rel="stylesheet" href="{% static 'main/css/global.css' %}">
         <link rel="shortcut icon" href="{%  static 'main/image/favicon.png' %}">
@@ -20,12 +13,12 @@
         <div class="centered">
             <h1>smileyjoe.io</h1>
             <div class="nav">
-                <span><a href="http://blog.smileyjoe.io/about" onclick="ga_link('about');">About</a></span>
-                <span><a href="http://git.smileyjoe.io" onclick="ga_link('git');">Git</a></span>
-                <span><a href="http://maven.smileyjoe.io" onclick="ga_link('maven');">Maven</a></span>
-                <span><a href="http://blog.smileyjoe.io" onclick="ga_link('blog');">Blog</a></span>
+                <span><a href="http://blog.smileyjoe.io/about" onclick="ga_link('main', 'about');">About</a></span>
+                <span><a href="http://git.smileyjoe.io" onclick="ga_link('main', 'git');">Git</a></span>
+                <span><a href="http://maven.smileyjoe.io" onclick="ga_link('main', 'maven');">Maven</a></span>
+                <span><a href="http://blog.smileyjoe.io" onclick="ga_link('main', 'blog');">Blog</a></span>
                 <br/>
-                <span><a href="{% host_url 'index' host 'secret' %}" onclick="ga_link('secret');">Secret</a></span>
+                <span><a href="{% host_url 'index' host 'secret' %}" onclick="ga_link('main', 'secret');">Secret</a></span>
             </div>
         </div>
     </body>

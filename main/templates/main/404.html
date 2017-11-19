@@ -1,12 +1,9 @@
 {% load staticfiles %}
 <html>
     <head>
-        <script async src='https://www.google-analytics.com/analytics.js'></script>
-        <script>
-            window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-            ga('create', '{{ GA_TRACKING_ID }}');
-            ga('send', 'pageview', '404');
-        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {{ analytics|safe }}
+        <script src="{% static 'main/js/analytics.js' %}"></script>
         <title>404</title>
         <link rel="stylesheet" href="{% static 'main/css/global.css' %}">
     </head>
