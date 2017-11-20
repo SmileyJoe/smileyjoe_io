@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_hosts',
     'main',
     'secret',
+    'smileyjoe_io'
 ]
 
 MIDDLEWARE = [
