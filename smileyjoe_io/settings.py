@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SMILEYJOE_IO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('SMILEYJOE_IO_DEBUG').lower() == 'TRUE'.lower()
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'secret.localhost']
 
 
 # Application definition
@@ -37,10 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_hosts',
     'main',
+    'secret',
+    'smileyjoe_io'
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,15 +52,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'smileyjoe_io.urls'
+ROOT_HOSTCONF = 'smileyjoe_io.hosts'
+DEFAULT_HOST = 'www'
+PARENT_HOST = os.environ.get('SMILEYJOE_IO_PARENT_HOST')
+GA_TRACKING_ID = os.environ.get('SMILEYJOE_IO_GA')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, "main", "templates")
+            os.path.join(BASE_DIR, "main", "templates"),
+            os.path.join(BASE_DIR, "secret", "templates"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -124,4 +134,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "main", "static"),
+    os.path.join(BASE_DIR, "secret", "static"),
 ]
