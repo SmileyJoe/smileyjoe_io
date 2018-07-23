@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SMILEYJOE_IO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('SMILEYJOE_IO_DEBUG').lower() == 'TRUE'.lower()
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'secret.localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'secret.localhost', 'http://178.128.11.228/']
 
 
 # Application definition
